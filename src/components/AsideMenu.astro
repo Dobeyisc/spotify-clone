@@ -1,0 +1,39 @@
+---
+import SpotifyLogo from "./icons/SpotifyLogo.astro";
+import Library from "../components/icons/Library.astro";
+import Home from "../components/icons/Home.astro"
+
+import Search from "../components/icons/Search.astro"
+import SideMenuItem from "../components/SideMenuItem.astro";
+import SideMenuCard from "../components/SideMenuCard.astro"
+
+import { playlists } from "../services/data";
+---
+<nav class="flex flex-col flex-1 gap-2 overflow-hidden">
+    <div class="bg-primary rounded-lg p-2">
+        <ul>
+            <SideMenuItem>
+                <SpotifyLogo class="text-white"/>
+            </SideMenuItem>
+            <SideMenuItem href="/">
+                <Home/>
+                Home
+            </SideMenuItem>
+            <SideMenuItem href="/search">
+                <Search/>
+                Search
+            </SideMenuItem>
+        </ul>
+    </div>
+    <div class="flex flex-1 rounded-lg p-2 bg-primary">
+        <ul>
+            <SideMenuItem href="/">
+                <Library/>
+                Your Library    
+            </SideMenuItem>
+            {
+                playlists.map((playlist) => <SideMenuCard playlist={playlist} /> )
+            }
+        </ul>
+    </div>
+</nav>
